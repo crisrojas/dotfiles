@@ -155,9 +155,9 @@ export PATH=/usr/local/bin:$PATH
 #*/
 
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
-push () { sh ~/dev/.scripts/"$1"-push.sh }
-publish () { sh ~/dev/.scripts/"$1"-push.sh }
-bear () { sh ~/dev/.scripts/bear-"$1".sh }
+push () { sh ~/dotfiles/.scripts/"$1"-push.sh }
+publish () { sh ~/dotfiles/.scripts/"$1"-push.sh }
+bear () { sh ~/dotfiles/.scripts/bear-"$1".sh }
 notability () { open /Users/crisrojas/Library/Mobile\ Documents/ZP9ZJ4EF3S~com~gingerlabs~Notability/Documents }
 
 
