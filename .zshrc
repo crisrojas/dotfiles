@@ -51,8 +51,7 @@ notabilityFolder="~/Library/Mobile\ Documents/ZP9ZJ4EF3S~com~gingerlabs~Notabili
 alias src="source ~/.zshrc"
 alias edit="vi ~/.zshrc"
 alias bearFolder="cd $bearFolder"
-timestamp=$(date +%Y-%m-%d_%H:%M:%S)
-# timestamp=`date "+%Y%m%d-%H%M%S"`
+timestamp=$(date +%Y%m%d%H%M%S)
 
 #/*
 #|--------------------------------------------------------------------------
