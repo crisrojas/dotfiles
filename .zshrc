@@ -37,8 +37,8 @@ source $ZSH/oh-my-zsh.sh
 #|--------------------------------------------------------------------------
 #*/
 
-bearFolder="~/Library/Group\ Containers/9K33E3U3T4.net.shinyfrog.bear/Application\ Data"
-notabilityFolder="~/Library/Mobile\ Documents/ZP9ZJ4EF3S~com~gingerlabs~Notability/Documents"
+bearPath="~/Library/Group\ Containers/9K33E3U3T4.net.shinyfrog.bear/Application\ Data"
+notabilityPath=~/Library/Mobile\ Documents/ZP9ZJ4EF3S~com~gingerlabs~Notability/Documents
 
 
 #/*
@@ -50,7 +50,7 @@ notabilityFolder="~/Library/Mobile\ Documents/ZP9ZJ4EF3S~com~gingerlabs~Notabili
 # For a full list of active aliases, run `alias`.
 alias src="source ~/.zshrc"
 alias edit="vi ~/.zshrc"
-alias bearFolder="cd $bearFolder"
+
 timestamp=$(date +%Y%m%d%H%M%S)
 
 #/*
@@ -76,7 +76,29 @@ export PATH=/usr/local/bin:$PATH
 #*/
 
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
-bear () { sh ~/dotfiles/.scripts/bear-"$1".sh }
-notability () { open /Users/crisrojas/Library/Mobile\ Documents/ZP9ZJ4EF3S~com~gingerlabs~Notability/Documents }
+# notability () { open /Users/crisrojas/Library/Mobile\ Documents/ZP9ZJ4EF3S~com~gingerlabs~Notability/Documents }
+
+change() {
+	if [[ "$*" == *dotfiles* ]]; then
+		cd ~/dotfiles;
+	else
+		cd $1
+	fi
+}
+
+finder() {
+	if [[ "$*" == *dotfiles* ]]; then
+		open ~/dotfiles
+	elif [[ "$*" == *bear* ]]; then
+		alias bear="open $bearPath";
+		bear
+	elif [[ "$*" == *notability* ]]; then
+	# doesn't work for some reason
+	# 	alias notability="open $notabilityPath"
+		open /Users/crisrojas/Library/Mobile\ Documents/ZP9ZJ4EF3S~com~gingerlabs~Notability/Documents	
+	else
+		echo "todo" 
+	fi
+}
 
 source ~/dotfiles/modules/git.sh

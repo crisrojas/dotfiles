@@ -32,7 +32,7 @@ push() {
 		git commit -m "updated at $timestamp";
 		git push origin master
 	else
-		echo "@todo"
+		git push origin $1
 	fi
 }
 
@@ -43,6 +43,6 @@ log() {
 		cd ~/dotfiles;
 		git log
 	else
-		echo "@todo"
+		git log $1
 	fi
 }
