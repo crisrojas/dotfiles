@@ -18,7 +18,8 @@ commit() { git commit -m $1 }
 clone () { git clone git@github.com:crisrojas/"$1".git }
 rename() { git branch -M $1 }
 
-# Review name
+# Choose a better name
+# for this functions
 force() { git push -f }
 aforce() { append ; force }
 
