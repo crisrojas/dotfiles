@@ -29,7 +29,7 @@ push() {
 	then
 		cd ~/dotfiles;
 		git add .;
-		git commit -m "updated";
+		git commit -m "updated at $timestamp";
 		git push origin master
 	else
 		echo "@todo"
