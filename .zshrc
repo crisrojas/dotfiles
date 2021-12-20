@@ -100,7 +100,7 @@ source $ZSH/oh-my-zsh.sh
 #*/
 
 bearFolder="~/Library/Group\ Containers/9K33E3U3T4.net.shinyfrog.bear/Application\ Data"
-notabilityFolder="/Users/crisrojas/Library/Mobile\ Documents/ZP9ZJ4EF3S~com~gingerlabs~Notability/Documents"
+notabilityFolder="~/Library/Mobile\ Documents/ZP9ZJ4EF3S~com~gingerlabs~Notability/Documents"
 
 
 #/*
@@ -160,21 +160,4 @@ publish () { sh ~/dotfiles/.scripts/"$1"-push.sh }
 bear () { sh ~/dotfiles/.scripts/bear-"$1".sh }
 notability () { open /Users/crisrojas/Library/Mobile\ Documents/ZP9ZJ4EF3S~com~gingerlabs~Notability/Documents }
 
-
-#/*
-#|--------------------------------------------------------------------------
-#| Git functions 
-#|--------------------------------------------------------------------------
-#*/
-
-status () { git status }
-fetch () { git fetch -p }
-pull () { git pull $1 }
-append () { git add . ; git commit --amend --no-edit }
-branch () { git branch }
-squash () { git rebase -i HEAD~$1 }
-create() { git checkout -b $1 }
-checkout() { git checkout $1 }
-delete() { git branch -D $1 }
-
-clone () { git clone git@github.com:crisrojas/"$1".git }
+source ~/dotfiles/.scripts/git.sh
