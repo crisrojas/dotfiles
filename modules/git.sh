@@ -35,3 +35,14 @@ push() {
 		echo "@todo"
 	fi
 }
+
+
+log() {
+	if [[ "$*" == *dotfiles* ]]
+	then
+		cd ~/dotfiles;
+		git log
+	else
+		echo "@todo"
+	fi
+}
