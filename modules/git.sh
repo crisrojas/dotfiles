@@ -32,6 +32,6 @@ push() {
 		git commit -m "updated";
 		git push origin master
 	else
-		echo "NO"
+		echo "@todo"
 	fi
 }
