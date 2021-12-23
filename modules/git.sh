@@ -22,6 +22,8 @@ stash() { git stash save }
 pop() { git stash pop }
 restore() { git restore $1 }
 replace () { delete $1; rename $1 }
+tag() { git tag $1 }
+lastdiff() { git diff HEAD^1 }
 
 ##### Choose a better name
 # for this functions
@@ -57,7 +59,6 @@ push() {
  		 git push origin $branch
 	fi
 }
-
 
 log() {
 	if [[ "$*" == *dotfiles* ]]
