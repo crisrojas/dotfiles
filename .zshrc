@@ -81,6 +81,8 @@ code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 change() {
 	if [[ "$*" == *dotfiles* ]]; then
 		cd ~/dotfiles;
+	elif [[ "$*" == *referencias* ]]; then
+		cd  ~/Library/Mobile\ Documents/27N4MQEA55~pro~writer/Documents/Referencias
 	else
 		cd $1
 	fi
@@ -89,13 +91,15 @@ change() {
 finder() {
 	if [[ "$*" == *dotfiles* ]]; then
 		open ~/dotfiles
+	elif [[ "$*" == *referencias* ]]; then
+		open ~/Library/Mobile\ Documents/27N4MQEA55~pro~writer/Documents/Referencias
 	elif [[ "$*" == *bear* ]]; then
 		alias bear="open $bearPath";
 		bear
 	elif [[ "$*" == *notability* ]]; then
 	# doesn't work for some reason
 	# 	alias notability="open $notabilityPath"
-		open /Users/crisrojas/Library/Mobile\ Documents/ZP9ZJ4EF3S~com~gingerlabs~Notability/Documents	
+		open ~/Library/Mobile\ Documents/ZP9ZJ4EF3S~com~gingerlabs~Notability/Documents	
 	else
 		echo "todo" 
 	fi
