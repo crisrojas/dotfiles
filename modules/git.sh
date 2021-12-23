@@ -37,14 +37,19 @@ function addcommit {
 }
 
 
+
 aforce() { append ; force }
 
 # todo:
 push() {
-	if [[ "$*" == *dotfiles* ]]
-	then
+	if [[ "$*" == *dotfiles* ]]; then
 		cd ~/dotfiles;
 		git add .;
+		git commit -m "updated at $timestamp";
+		git push origin master
+	elif [[ "$*" == *bear* ]]; then
+		goto bear;
+		git add .
 		git commit -m "updated at $timestamp";
 		git push origin master
 	else
