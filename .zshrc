@@ -38,7 +38,7 @@ source $ZSH/oh-my-zsh.sh
 #*/
 
 bearPath="~/Library/Group\ Containers/9K33E3U3T4.net.shinyfrog.bear/Application\ Data"
-notabilityPath=~/Library/Mobile\ Documents/ZP9ZJ4EF3S~com~gingerlabs~Notability/Documents
+notabilityPath="~/Library/Mobile\ Documents/ZP9ZJ4EF3S~com~gingerlabs~Notability/Documents"
 
 
 #/*
@@ -68,41 +68,30 @@ export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/2.7.0/bin:$PATH"
 export PATH=/usr/local/bin:$PATH
 
+#/*
+#|--------------------------------------------------------------------------
+#| Quick Navigation 
+#|--------------------------------------------------------------------------
+#*/
+
+# 1. Create symlinks folder: mkdir ~/.symlinks
+# 2. Put there some symlinks
+goto() { cd ~/.symlinks/$1 }
+finder() { open ~/.symlinks/$1 }
 
 #/*
 #|--------------------------------------------------------------------------
-#| Functions 
+#| Misc 
 #|--------------------------------------------------------------------------
 #*/
 
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
-# notability () { open /Users/crisrojas/Library/Mobile\ Documents/ZP9ZJ4EF3S~com~gingerlabs~Notability/Documents }
 
-change() {
-	if [[ "$*" == *dotfiles* ]]; then
-		cd ~/dotfiles;
-	elif [[ "$*" == *referencias* ]]; then
-		cd  ~/Library/Mobile\ Documents/27N4MQEA55~pro~writer/Documents/Referencias
-	else
-		cd $1
-	fi
-}
 
-finder() {
-	if [[ "$*" == *dotfiles* ]]; then
-		open ~/dotfiles
-	elif [[ "$*" == *referencias* ]]; then
-		open ~/Library/Mobile\ Documents/27N4MQEA55~pro~writer/Documents/Referencias
-	elif [[ "$*" == *bear* ]]; then
-		alias bear="open $bearPath";
-		bear
-	elif [[ "$*" == *notability* ]]; then
-	# doesn't work for some reason
-	# 	alias notability="open $notabilityPath"
-		open ~/Library/Mobile\ Documents/ZP9ZJ4EF3S~com~gingerlabs~Notability/Documents	
-	else
-		echo "todo" 
-	fi
-}
+#/*
+#|--------------------------------------------------------------------------
+#| Imports 
+#|--------------------------------------------------------------------------
+#*/
 
 source ~/dotfiles/modules/git.sh
