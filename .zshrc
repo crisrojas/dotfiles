@@ -78,6 +78,8 @@ export PATH=/usr/local/bin:$PATH
 # 2. Put there some symlinks
 goto() { cd ~/.symlinks/$1 }
 finder() { open ~/.symlinks/$1 }
+# todo alias() up { $1 for each 0.in..$1 ../.. }
+alias up='cd ../..'
 
 #/*
 #|--------------------------------------------------------------------------
@@ -95,3 +97,4 @@ code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 #*/
 
 source ~/dotfiles/modules/git.sh
+source ~/config.sh
