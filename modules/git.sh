@@ -4,6 +4,8 @@
 #|--------------------------------------------------------------------------
 #*/
 
+branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
+
 add () { git add $1 }
 status () { git status }
 fetch () { git fetch -p }
@@ -30,7 +32,6 @@ rebase() { git rebase --$1   }
 # for this functions
 function force { 
 	# @todo: Is this really needed?
-	branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
   git push -f origin $branch
 }
 
@@ -49,7 +50,7 @@ push() {
 		cd ~/dotfiles;
 		git add .;
 		git commit -m "updated from $environment at $timestamp";
-		git push origin master
+		git push origin $branch
 	elif [[ "$*" == *bear* ]]; then
 		goto bear;
 		git add .
@@ -58,9 +59,8 @@ push() {
 	elif [[ "$*" == *new* ]]; then
 		git add .
 		git commit -m "updated from $environment at $timestamp";
-		git push origin master
+		git push origin $branch
 	else
-		 branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
  		 git push origin $branch
 	fi
 }
@@ -79,6 +79,5 @@ function rename {
 	# @todo: is this really needed?
 	# wouldn't this be enough?:
 	# rename() { git branch -M $1 }
-  branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
   git branch -M $branch $1
 }
