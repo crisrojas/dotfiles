@@ -5,6 +5,7 @@
 #*/
 
 branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
+lastcommit=$(git rev-parse $branch);
 
 add () { git add $1 }
 status () { git status }
