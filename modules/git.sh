@@ -6,6 +6,7 @@
 
 branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
 lastcommit=$(git rev-parse $branch);
+updateMessage="updated from $environment at $timestamp";
 
 add () { git add $1 }
 status () { git status }
@@ -49,17 +50,14 @@ aforce() { append ; force }
 push() {
 	if [[ "$*" == *dotfiles* ]]; then
 		cd ~/dotfiles;
-		git add .;
-		git commit -m "updated from $environment at $timestamp";
+		addcommit $updateMessage
 		git push origin $branch
 	elif [[ "$*" == *bear* ]]; then
 		goto bear;
-		git add .
-		git commit -m "updated from $environment at $timestamp";
+		addcommit $updateMessage
 		git push origin master
 	elif [[ "$*" == *new* ]]; then
-		git add .
-		git commit -m "updated from $environment at $timestamp";
+		addcommit $updateMessage
 		git push origin $branch
 	else
  		 git push origin $branch
