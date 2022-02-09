@@ -48,16 +48,16 @@ push() {
 	if [[ "$*" == *dotfiles* ]]; then
 		cd ~/dotfiles;
 		git add .;
-		git commit -m "updated at $timestamp";
+		git commit -m "updated from $environment at $timestamp";
 		git push origin master
 	elif [[ "$*" == *bear* ]]; then
 		goto bear;
 		git add .
-		git commit -m "updated at $timestamp";
+		git commit -m "updated from $environment at $timestamp";
 		git push origin master
 	elif [[ "$*" == *new* ]]; then
 		git add .
-		git commit -m "updated at $timestamp";
+		git commit -m "updated from $environment at $timestamp";
 		git push origin master
 	else
 		 branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
