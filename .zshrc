@@ -98,4 +98,3 @@ code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 
 source ~/dotfiles/config.sh
 source ~/dotfiles/modules/git.sh
-
