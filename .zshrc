@@ -51,7 +51,7 @@ notabilityPath="~/Library/Mobile\ Documents/ZP9ZJ4EF3S~com~gingerlabs~Notability
 alias src="source ~/.zshrc"
 alias edit="vi ~/.zshrc"
 
-timestamp=$(date +%Y%m%d%H%M%S)
+timestamp=$(date +%Y-%m-%d-%H:%M:%S)
 
 #/*
 #|--------------------------------------------------------------------------
