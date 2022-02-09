@@ -97,4 +97,4 @@ code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 #*/
 
 source ~/dotfiles/modules/git.sh
-source ~/config.sh
+source ~/dotfiles/config.sh
