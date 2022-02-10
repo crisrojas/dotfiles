@@ -4,6 +4,10 @@
 #|--------------------------------------------------------------------------
 #*/
 
+branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
+lastcommit=$(git rev-parse $branch);
+updateMessage="updated from $environment at $timestamp";
+
 add () { git add $1 }
 status () { git status }
 fetch () { git fetch -p }
@@ -24,13 +28,12 @@ restore() { git restore $1 }
 replace () { delete $1; rename $1 }
 tag() { git tag $1 }
 lastdiff() { git diff HEAD^1 }
-rebase() { git rebase --$1 }
+rebase() { git rebase --$1   }
 
 ##### Choose a better name
 # for this functions
 function force { 
 	# @todo: Is this really needed?
-	branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
   git push -f origin $branch
 }
 
@@ -47,20 +50,16 @@ aforce() { append ; force }
 push() {
 	if [[ "$*" == *dotfiles* ]]; then
 		cd ~/dotfiles;
-		git add .;
-		git commit -m "updated at $timestamp";
-		git push origin master
+		addcommit $updateMessage
+		git push origin $branch
 	elif [[ "$*" == *bear* ]]; then
 		goto bear;
-		git add .
-		git commit -m "updated at $timestamp";
+		addcommit $updateMessage
 		git push origin master
 	elif [[ "$*" == *new* ]]; then
-		git add .
-		git commit -m "updated at $timestamp";
-		git push origin master
+		addcommit $updateMessage
+		git push origin $branch
 	else
-		 branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
  		 git push origin $branch
 	fi
 }
@@ -79,6 +78,5 @@ function rename {
 	# @todo: is this really needed?
 	# wouldn't this be enough?:
 	# rename() { git branch -M $1 }
-  branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
   git branch -M $branch $1
 }

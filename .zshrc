@@ -51,7 +51,7 @@ notabilityPath="~/Library/Mobile\ Documents/ZP9ZJ4EF3S~com~gingerlabs~Notability
 alias src="source ~/.zshrc"
 alias edit="vi ~/.zshrc"
 
-timestamp=$(date +%Y%m%d%H%M%S)
+timestamp=$(date +%Y-%m-%d-%H:%M:%S)
 
 #/*
 #|--------------------------------------------------------------------------
@@ -78,6 +78,8 @@ export PATH=/usr/local/bin:$PATH
 # 2. Put there some symlinks
 goto() { cd ~/.symlinks/$1 }
 finder() { open ~/.symlinks/$1 }
+# todo alias() up { $1 for each 0.in..$1 ../.. }
+alias up='cd ../..'
 
 #/*
 #|--------------------------------------------------------------------------
@@ -94,4 +96,5 @@ code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 #|--------------------------------------------------------------------------
 #*/
 
+source ~/dotfiles/config.sh
 source ~/dotfiles/modules/git.sh
