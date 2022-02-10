@@ -4,7 +4,9 @@
 #|--------------------------------------------------------------------------
 #*/
 
-branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
+# @todo: this doesn't return the correct current branch
+# branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
+branch=$(git branch  --no-color  | grep -E '^\*' | sed 's/\*[^a-z]*//g')
 lastcommit=$(git rev-parse $branch);
 updateMessage="updated from $environment at $timestamp";
 
