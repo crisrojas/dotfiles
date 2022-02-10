@@ -80,6 +80,8 @@ goto() { cd ~/.symlinks/$1 }
 finder() { open ~/.symlinks/$1 }
 # todo alias() up { $1 for each 0.in..$1 ../.. }
 alias up='cd ../..'
+hideDotFiles() { defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder }
+showDotFiles() { defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder }
 
 #/*
 #|--------------------------------------------------------------------------
