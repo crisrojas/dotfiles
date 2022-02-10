@@ -1,3 +1,6 @@
+# Import config variables
+source ~/dotfiles/config.sh
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -8,7 +11,7 @@ export ZSH="/Users/$USER/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="robbyrussell"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -80,6 +83,8 @@ goto() { cd ~/.symlinks/$1 }
 finder() { open ~/.symlinks/$1 }
 # todo alias() up { $1 for each 0.in..$1 ../.. }
 alias up='cd ../..'
+hideDotFiles() { defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder }
+showDotFiles() { defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder }
 
 #/*
 #|--------------------------------------------------------------------------
@@ -96,5 +101,4 @@ code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 #|--------------------------------------------------------------------------
 #*/
 
-source ~/dotfiles/config.sh
 source ~/dotfiles/modules/git.sh
