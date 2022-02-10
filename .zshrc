@@ -1,3 +1,6 @@
+# Import config variables
+source ~/dotfiles/config.sh
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -98,5 +101,4 @@ code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 #|--------------------------------------------------------------------------
 #*/
 
-source ~/dotfiles/config.sh
 source ~/dotfiles/modules/git.sh
