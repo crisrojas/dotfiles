@@ -86,6 +86,12 @@ alias up='cd ../..'
 hideDotFiles() { defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder }
 showDotFiles() { defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder }
 
+# Screenshot methods
+# Usage:
+# screenshot location mynewlocation will set the new location for the screenshots
+# screenshot type jpg will set the screenshot format to jpg
+screenshot() { defaults write com.apple.screencapture $1 $2 }
+
 #/*
 #|--------------------------------------------------------------------------
 #| Misc 
