@@ -1,0 +1,1 @@
+decodeProvision() { security cms -D -i  $1 }

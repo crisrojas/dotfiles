@@ -5,10 +5,19 @@
 #*/
 
 # @todo: this doesn't return the correct current branch
-# branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
-branch=$(git branch  --no-color  | grep -E '^\*' | sed 's/\*[^a-z]*//g')
+branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
+# branch=$(git branch  --no-color  | grep -E '^\*' | sed 's/\*[^a-z]*//g')
 lastcommit=$(git rev-parse $branch);
 updateMessage="updated from $environment at $timestamp";
+
+# This is needed because $branch variable is set once
+# So we must either updating before use or calling a function that returns currente
+getCurrentBranch() { branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p') }
+currentBranch()
+{
+	local  currentBranch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p'
+	echo "$currentBranch"
+}
 
 add () { git add $1 }
 status () { git status }
@@ -36,7 +45,7 @@ rebase() { git rebase --$1   }
 # for this functions
 function force { 
 	# @todo: Is this really needed?
-  git push -f origin $branch
+  git push -f origin $(currentBranch)
 }
 
 function addcommit {
@@ -53,16 +62,16 @@ push() {
 	if [[ "$*" == *dotfiles* ]]; then
 		cd ~/dotfiles;
 		addcommit $updateMessage
-		git push origin $branch
+		git push origin $(currentBranch)
 	elif [[ "$*" == *bear* ]]; then
 		goto bear;
 		addcommit $updateMessage
 		git push origin master
 	elif [[ "$*" == *new* ]]; then
 		addcommit $updateMessage
-		git push origin $branch
+		git push origin $(currentBranch)
 	else
- 		 git push origin $branch
+ 		 git push origin $(currentBranch)
 	fi
 }
 
@@ -80,5 +89,6 @@ function rename {
 	# @todo: is this really needed?
 	# wouldn't this be enough?:
 	# rename() { git branch -M $1 }
-  git branch -M $branch $1
+  getCurrentBranch()
+  git branch -M $(currentBranch) $1
 }
