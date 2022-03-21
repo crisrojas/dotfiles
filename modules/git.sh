@@ -15,7 +15,7 @@ updateMessage="updated from $environment at $timestamp";
 getCurrentBranch() { branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p') }
 currentBranch()
 {
-	local  currentBranch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p'
+	local  currentBranch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 	echo "$currentBranch"
 }
 
