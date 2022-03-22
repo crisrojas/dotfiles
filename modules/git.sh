@@ -29,6 +29,7 @@ squash () { git rebase -i HEAD~$1 }
 create() { git checkout -b $1 }
 checkout() { git checkout $1 }
 delete() { git branch -D $1 }
+deleteRem() { git push origin --delete $1 }
 commit() { git commit -m $1 }
 clone () { git clone git@github.com:crisrojas/"$1".git }
 pick() { git cherry-pick $1 }
