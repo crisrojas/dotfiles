@@ -25,7 +25,7 @@ fetch () { git fetch -p }
 pull () { git pull origin $1 }
 append () { git add . ; git commit --amend --no-edit }
 amend() { git commit --amend -m $1 }
-branch () { git branch }
+branch () { git branch $1 }
 squash () { git rebase -i HEAD~$1 }
 create() { git checkout -b $1 }
 checkout() { git checkout $1 }
