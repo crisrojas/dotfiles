@@ -13,8 +13,7 @@ updateMessage="updated from $environment at $timestamp";
 # This is needed because $branch variable is set once
 # So we must either updating before use or calling a function that returns currente
 getCurrentBranch() { branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p') }
-currentBranch()
-{
+currentBranch() {
 	local  currentBranch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 	echo "$currentBranch"
 }
@@ -89,6 +88,5 @@ function rename {
 	# @todo: is this really needed?
 	# wouldn't this be enough?:
 	# rename() { git branch -M $1 }
-  getCurrentBranch()
   git branch -M $(currentBranch) $1
 }
