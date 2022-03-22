@@ -26,6 +26,9 @@ append () { git add . ; git commit --amend --no-edit }
 amend() { git commit --amend -m $1 }
 branch () { git branch $1 }
 squash () { git rebase -i HEAD~$1 }
+
+# Pass target commit hash as a parameter
+squashFrom() { git rebase -i $1 }
 create() { git checkout -b $1 }
 checkout() { git checkout $1 }
 delete() { git branch -D $1 }
