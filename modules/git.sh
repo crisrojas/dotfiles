@@ -25,6 +25,7 @@ pull () { git pull origin $1 }
 append () { git add . ; git commit --amend --no-edit }
 amend() { git commit --amend -m $1 }
 branch () { git branch $1 }
+branches() { git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))' }
 squash () { git rebase -i HEAD~$1 }
 
 # Pass target commit hash as a parameter

@@ -1,4 +1,5 @@
-# Import config variables
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 source ~/dotfiles/config.sh
 
 # If you come from bash you might have to change your $PATH.
@@ -62,7 +63,7 @@ timestamp=$(date +%Y-%m-%d-%H:%M:%S)
 #|--------------------------------------------------------------------------
 #*/
 
-
+export ANDROID_HOME=~/Library/Android/sdk
 export PATH="/Users/$USER/go/bin:$PATH"
 PATH=/bin:/usr/bin:/usr/local/bin:${PATH}
 export PATH
@@ -110,3 +111,6 @@ code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 source ~/dotfiles/modules/git.sh
 source ~/dotfiles/modules/brew-config.sh
 source ~/dotfiles/modules/misc.sh
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
