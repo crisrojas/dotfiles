@@ -21,7 +21,7 @@ currentBranch() {
 add () { git add $1 }
 status () { git status }
 fetch () { git fetch -p }
-pull () { git pull origin $1 }
+pull () { git pull origin $(currentBranch) }
 append () { git add . ; git commit --amend --no-edit }
 amend() { git commit --amend -m $1 }
 # branch () { git branch $1 }
