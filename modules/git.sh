@@ -40,7 +40,8 @@ pick() { git cherry-pick $1 }
 stash() { git stash save }
 pop() { git stash pop }
 restore() { git restore $1 }
-replace () { delete $1; rename $1 }
+# replace () { delete $1; rename $1 }
+override() { delete $1; rename $1 }
 tag() { git tag $1 }
 diffs() { git diff HEAD^1 }
 rebase() { git rebase --$1   }
