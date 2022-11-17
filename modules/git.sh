@@ -5,9 +5,9 @@
 #*/
 
 # @todo: this doesn't return the correct current branch
-branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
+# branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
 # branch=$(git branch  --no-color  | grep -E '^\*' | sed 's/\*[^a-z]*//g')
-lastcommit=$(git rev-parse $branch);
+# lastcommit=$(git rev-parse $branch);
 updateMessage="updated from $environment at $timestamp";
 
 # This is needed because $branch variable is set once
@@ -94,9 +94,4 @@ log() {
 	fi
 }
 
-function rename {
-	# @todo: is this really needed?
-	# wouldn't this be enough?:
-	# rename() { git branch -M $1 }
-  git branch -M $(currentBranch) $1
-}
+rename() { git branch -M $1 }
