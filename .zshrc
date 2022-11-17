@@ -52,8 +52,8 @@ notabilityPath="~/Library/Mobile\ Documents/ZP9ZJ4EF3S~com~gingerlabs~Notability
 #*/
 
 # For a full list of active aliases, run `alias`.
-alias src="source ~/.zshrc"
-alias edit="vi ~/.zshrc"
+alias update="source ~/.zshrc"
+#alias edit="vi ~/.zshrc"
 
 timestamp=$(date +%Y-%m-%d-%H:%M:%S)
 
@@ -71,6 +71,8 @@ export PATH=$PATH:~/.composer/vendor/bin
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/2.7.0/bin:$PATH"
 export PATH=/usr/local/bin:$PATH
+# Swift WASM
+export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:"${PATH}"
 
 #/*
 #|--------------------------------------------------------------------------
@@ -86,7 +88,18 @@ finder() { open ~/.symlinks/$1 }
 alias up='cd ../..'
 hideDotFiles() { defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder }
 showDotFiles() { defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder }
-
+edit() { 
+	if [[ -z "$*" ]]; then 
+		vi ~/.zshrc
+	else
+		vi ~/.symlinks/dotfiles/modules/$1.sh
+	fi
+}
+list() {
+	if [[ "$*" == *modules* ]]; then
+		ls ~/.symlinks/dotfiles/modules
+	fi
+}
 # Screenshot methods
 # Usage:
 # screenshot location mynewlocation will set the new location for the screenshots
@@ -111,6 +124,7 @@ code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 source ~/dotfiles/modules/git.sh
 source ~/dotfiles/modules/brew-config.sh
 source ~/dotfiles/modules/misc.sh
+source ~/dotfiles/modules/bear.sh
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
