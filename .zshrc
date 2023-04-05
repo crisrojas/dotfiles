@@ -113,8 +113,8 @@ screenshot() { defaults write com.apple.screencapture $1 $2 }
 #*/
 
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
-
-
+mock() { fastlane testbuddy type:$1 }
+killsims() { xcrun simctl shutdown all }
 #/*
 #|--------------------------------------------------------------------------
 #| Imports 
@@ -128,3 +128,4 @@ source ~/dotfiles/modules/bear.sh
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+source /Users/cpatinor/dev/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
