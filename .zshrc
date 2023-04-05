@@ -128,4 +128,4 @@ source ~/dotfiles/modules/bear.sh
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
-source /Users/cpatinor/dev/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /Users/cpatinor/dev/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
