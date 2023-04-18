@@ -73,6 +73,11 @@ export PATH="/usr/local/lib/ruby/gems/2.7.0/bin:$PATH"
 export PATH=/usr/local/bin:$PATH
 # Swift WASM
 export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:"${PATH}"
+ export PATH=/opt/homebrew/bin:$PATH
+
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$GOPATH/bin
+
 
 #/*
 #|--------------------------------------------------------------------------

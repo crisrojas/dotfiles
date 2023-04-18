@@ -40,6 +40,10 @@ pick() { git cherry-pick $1 }
 stash() { git stash save }
 pop() { git stash pop }
 restore() { git restore $1 }
+
+ # Removes the specified file from Git's index, but leaves the file on disk. 
+ # The --cached flag tells Git to remove the file from the index, but not from the working directory.
+remove() { git rm --cached $1 }
 # replace () { delete $1; rename $1 }
 override() { delete $1; rename $1 }
 tag() { git tag $1 }
