@@ -12,7 +12,3 @@ bear() {
 		echo "Command not found"
 	fi
 }
-
-bearPublish() {
-	
-}

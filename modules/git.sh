@@ -13,11 +13,14 @@ updateMessage="updated from $environment at $timestamp";
 # This is needed because $branch variable is set once
 # So we must either updating before use or calling a function that returns currente
 getCurrentBranch() { branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p') }
+# Git history needs to have at least one commit to work
 currentBranch() {
 	local  currentBranch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 	echo "$currentBranch"
 }
 
+prefix() { rename $1$(currentBranch)  }
+suffix() { rename $(currentBranch)$1 }
 add () { git add $1 }
 status () { git status }
 fetch () { git fetch -p }
