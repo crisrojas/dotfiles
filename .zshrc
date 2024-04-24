@@ -78,6 +78,10 @@ export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:"${PA
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$GOPATH/bin
 
+# Put here all the initial config commands
+init() { 
+	ln -s ~/dotfiles/XcodeSnippets ~/Library/Developer/Xcode/UserData/CodeSnippets
+}
 
 #/*
 #|--------------------------------------------------------------------------
@@ -98,9 +102,12 @@ edit() {
 		vi ~/.symlinks/dotfiles/modules/$1.sh
 	fi
 }
+
 list() {
 	if [[ "$*" == *modules* ]]; then
 		ls ~/.symlinks/dotfiles/modules
+	else
+		ls -ld .?*
 	fi
 }
 

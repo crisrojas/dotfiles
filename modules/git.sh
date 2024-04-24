@@ -96,6 +96,8 @@ delete() {
 		fi
 	elif [ "$1" = "repo" ]; then
 		gh repo delete $2 --yes
+	elif [ "$1" = "deriveddata" ]; then
+		rm -rf ~/Library/Developer/Xcode/DerivedData
 	else 
 		git branch -D $1 
 	fi
