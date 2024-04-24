@@ -91,8 +91,6 @@ goto() { cd ~/.symlinks/$1 }
 finder() { open ~/.symlinks/$1 }
 # todo alias() up { $1 for each 0.in..$1 ../.. }
 alias up='cd ../..'
-hideDotFiles() { defaults write com.apple.finder AppleShowAllFiles FALSE; killall Finder }
-showDotFiles() { defaults write com.apple.finder AppleShowAllFiles TRUE; killall Finder }
 edit() { 
 	if [[ -z "$*" ]]; then 
 		vi ~/.zshrc
@@ -134,3 +132,12 @@ source ~/dotfiles/modules/bear.sh
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
 # source /Users/cpatinor/dev/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# bun completions
+[ -s "/Users/cristian/.bun/_bun" ] && source "/Users/cristian/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+[[ "$TERM_PROGRAM" == "CodeEditApp_Terminal" ]] && . "/Applications/CodeEdit.app/Contents/Resources/codeedit_shell_integration.zsh"

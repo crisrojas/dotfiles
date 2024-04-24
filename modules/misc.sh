@@ -1,3 +1,19 @@
+show() { 
+	if [ "$*" == "dotfiles" ]; then
+		showDotfiles
+	else
+		echo "Unhandled command"
+	fi
+}
+
+hide() {
+	if [ "$*" == "dotfiles" ]; then
+		hideDotfiles
+	else
+		echo "Unhandled command"
+	fi
+}
+
 showDotfiles() {
 	defaults write com.apple.Finder AppleShowAllFiles true;
 	killall Finder	
@@ -9,4 +25,3 @@ hideDotfiles() {
 }
 
 decodeProvision() { security cms -D -i  $1 }
-runEmulator() { ~/Library/Android/sdk/tools/emulator -avd Pixel_2_API_29 -no-snapshot }

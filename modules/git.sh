@@ -4,69 +4,80 @@
 #|--------------------------------------------------------------------------
 #*/
 
-# @todo: this doesn't return the correct current branch
-# branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p');
-# branch=$(git branch  --no-color  | grep -E '^\*' | sed 's/\*[^a-z]*//g')
 # lastcommit=$(git rev-parse $branch);
 updateMessage="updated from $environment at $timestamp";
 
-# This is needed because $branch variable is set once
-# So we must either updating before use or calling a function that returns currente
-getCurrentBranch() { branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p') }
 currentBranch() {
 	local  currentBranch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 	echo "$currentBranch"
 }
 
+prefix() { rename $1$(currentBranch)  }
+suffix() { rename $(currentBranch)$1 }
 add () { git add $1 }
 status () { git status }
-fetch () { git fetch -p }
 pull () { git pull origin $(currentBranch) }
+fetch () { git fetch -p ; pull }
 append () { git add . ; git commit --amend --no-edit }
 amend() { git commit --amend -m $1 }
-# branch () { git branch $1 }
-branch() { git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))' }
-squash () { git rebase -i HEAD~$1 }
-
-# Pass target commit hash as a parameter
-squashFrom() { git rebase -i $1 }
-create() { git checkout -b $1 }
 checkout() { git checkout $1 }
-delete() { git branch -D $1 }
+squashFrom() { git rebase -i $1 }
 deleteRem() { git push origin --delete $1 }
 commit() { git commit -m $1 }
-clone () { git clone git@github.com:crisrojas/"$1".git }
+clone () { git clone git@github.com:"$1".git }
 pick() { git cherry-pick $1 }
 stash() { git stash save }
 pop() { git stash pop }
 restore() { git restore $1 }
-
- # Removes the specified file from Git's index, but leaves the file on disk. 
- # The --cached flag tells Git to remove the file from the index, but not from the working directory.
-remove() { git rm --cached $1 }
-# replace () { delete $1; rename $1 }
+rename() { git branch -M $1 }
+force() { git push -f origin $(currentBranch) }
+addcommit() { git add . ; git commit -m $1 }
+replace () { delete $1; rename $1 }
 override() { delete $1; rename $1 }
 tag() { git tag $1 }
 diffs() { git diff HEAD^1 }
-rebase() { git rebase --$1   }
-
-##### Choose a better name
-# for this functions
-function force { 
-	# @todo: Is this really needed?
-  git push -f origin $(currentBranch)
-}
-
-function addcommit {
- git add .
- git commit -m $1
-}
-
-
-
+rebase() { git rebase --$1 }
+appendpush() { aforce }
+appendforce() { aforce }
 aforce() { append ; force }
+ # Removes the specified file from Git's index, but leaves the file on disk. 
+ # The --cached flag tells Git to remove the file from the index, but not from the working directory.
+remove() { git rm --cached $1 }
 
-# todo:
+branch() { git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))' }
+
+squash () { 
+	if [ $1 == "from" ]; then
+		if [ -z $2 ]; then
+			echo "Missing squash commit name"
+		else
+			squashFrom $2
+		fi
+	else
+		git rebase -i HEAD~$1
+	fi
+}
+
+create() {
+		if [ "$*" == ".gitignore" ]; then
+				cp ~/dotfiles/modules/gitignore.md .gitignore
+		else
+				git checkout -b $1
+		fi
+}
+
+delete() { 
+	if [ "$1" == "remote" ]; then
+		if [ -z "$2" ]; then
+			echo "Missing remote branch name"
+		else
+			deleteRem "$2"
+		fi
+	else 
+		git branch -D $1 
+	fi
+}
+
 push() {
 	if [[ "$*" == *dotfiles* ]]; then
 		cd ~/dotfiles;
@@ -99,4 +110,3 @@ log() {
 	fi
 }
 
-rename() { git branch -M $1 }
