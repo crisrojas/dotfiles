@@ -32,6 +32,10 @@ kills() {
 		#netstat -vanp tcp | grep $2;
 		lsof -i tcp:$2;
 		kill -9 $(lsof -ti:$2)
+	elif [ "$1" = "hugo" ]; then
+		killall -9 hugo;
+		killall hugo;
+		pkill hugo
 	else
 		echo $unhandledMsg
 	fi
