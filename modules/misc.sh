@@ -1,5 +1,5 @@
 show() { 
-	if [ "$*" == "dotfiles" ]; then
+	if [ "$1" = "dotfiles" ]; then
 		showDotfiles
 	else
 		echo "Unhandled command"
@@ -7,7 +7,7 @@ show() {
 }
 
 hide() {
-	if [ "$*" == "dotfiles" ]; then
+	if [ "$1" = "dotfiles" ]; then
 		hideDotfiles
 	else
 		echo "Unhandled command"

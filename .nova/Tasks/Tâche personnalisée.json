@@ -2,8 +2,8 @@
   "actions" : {
     "run" : {
       "enabled" : true,
-      "script" : "push new"
+      "script" : "#!\/bin\/zsh\nsource ~\/dotfiles\/.zshrc",
+      "shell" : "\/bin\/zsh"
     }
-  },
-  "identifier" : "7EBC2BB9-422D-4785-9CE5-ACAB6D6E2074"
+  }
 }

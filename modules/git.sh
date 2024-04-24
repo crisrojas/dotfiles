@@ -12,8 +12,8 @@ currentBranch() {
 	echo "$currentBranch"
 }
 
-prefix() { rename $1$(currentBranch)  }
-suffix() { rename $(currentBranch)$1 }
+prefix() { rename $1-$(currentBranch)  }
+suffix() { rename $(currentBranch)-$1 }
 add () { git add $1 }
 status () { git status }
 pull () { git pull origin $(currentBranch) }
@@ -47,32 +47,55 @@ remove() { git rm --cached $1 }
 branch() { git for-each-ref --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))' }
 
 squash () { 
-	if [ $1 == "from" ]; then
-		if [ -z $2 ]; then
-			echo "Missing squash commit name"
-		else
-			squashFrom $2
-		fi
+	if [ "$1" = "from" ]; then
+		 if [ -z "$2" ]; then
+			 echo "Missing squash commit name"
+		 else
+			 squashFrom "$2"
+		 fi
 	else
-		git rebase -i HEAD~$1
+		 git rebase -i HEAD~$1
+	fi
+}
+
+make() { 
+	if [ "$1" = "repo" ]; then
+		gh repo create $2 $3;
+	else
+		echo "Unhandled"
 	fi
 }
 
 create() {
-		if [ "$*" == ".gitignore" ]; then
+		if [ "$1" = ".gitignore" ]; then
 				cp ~/dotfiles/modules/gitignore.md .gitignore
+		elif [ "$1" = "branch" ]; then
+			git checkout -b $2
+		elif [ "$1" = "repo" ]; then
+			mkdir $2;
+			cd $2;
+			git init;
+			echo "# README" > README.md;
+			git add README.md;
+			git commit -m "First commit 🎉";
+			git branch -M main;
+			gh repo create $2 $3;
+			git remote add origin git@github.com:crisrojas/$2.git;
+			git push -u origin main
 		else
-				git checkout -b $1
+				echo "unhandled"
 		fi
 }
 
 delete() { 
-	if [ "$1" == "remote" ]; then
+	if [ "$1" = "remote" ]; then
 		if [ -z "$2" ]; then
 			echo "Missing remote branch name"
 		else
 			deleteRem "$2"
 		fi
+	elif [ "$1" = "repo" ]; then
+		gh repo delete $2 --yes
 	else 
 		git branch -D $1 
 	fi

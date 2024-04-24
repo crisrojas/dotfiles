@@ -103,11 +103,6 @@ list() {
 		ls ~/.symlinks/dotfiles/modules
 	fi
 }
-# Screenshot methods
-# Usage:
-# screenshot location mynewlocation will set the new location for the screenshots
-# screenshot type jpg will set the screenshot format to jpg
-screenshot() { defaults write com.apple.screencapture $1 $2 }
 
 #/*
 #|--------------------------------------------------------------------------
