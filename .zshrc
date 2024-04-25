@@ -63,22 +63,31 @@ timestamp=$(date +%Y-%m-%d-%H:%M:%S)
 #|--------------------------------------------------------------------------
 #*/
 
-export ANDROID_HOME=~/Library/Android/sdk
-export PATH="/Users/$USER/go/bin:$PATH"
-PATH=/bin:/usr/bin:/usr/local/bin:${PATH}
-export PATH
-export PATH=$PATH:~/.composer/vendor/bin
+
+# Note adding $PATH at the beginning seems to have a priority effect.
+# Which is useful if we have different versions of a binary that we want to use as default
+# Add basic system routes
+export PATH="/bin:/usr/bin:/usr/local/bin:$PATH"
+
+# Add composer
+export PATH="$PATH:~/.composer/vendor/bin"
+
+# Add ruby bins
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/2.7.0/bin:$PATH"
-export PATH=/usr/local/bin:$PATH
-# Swift WASM
-export PATH=/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:"${PATH}"
- export PATH=/opt/homebrew/bin:$PATH
 
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$GOPATH/bin
+# Add swift compiler binaries
+export PATH="/Library/Developer/Toolchains/swift-latest.xctoolchain/usr/bin:$PATH"
 
-# Put here all the initial config commands
+# Add hombre bins
+export PATH="/opt/homebrew/bin:$PATH"
+
+# Add Go y GOPATH al final, ya que no son prioritarios
+export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:$GOPATH/bin"
+
+
+# Initial config commands
 init() { 
 	ln -s ~/dotfiles/XcodeSnippets ~/Library/Developer/Xcode/UserData/CodeSnippets
 }
